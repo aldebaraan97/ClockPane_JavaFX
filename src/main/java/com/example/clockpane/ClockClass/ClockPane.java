@@ -84,8 +84,43 @@ public class ClockPane extends Pane {
         circle.setFill(Color.WHITE);
         circle.setStroke(Color.BLACK);
         Text t1 = new Text(centerX - 5, centerY - clockRadius + 12, "12");
-        Text t2 = new Text();
-        Text t3 = new Text();
-        Text t4 = new Text();
+        Text t2 = new Text(centerX - clockRadius + 3, centerY + 5, "9");
+        Text t3 = new Text(centerX + clockRadius - 10, centerY + 3, "3");
+        Text t4 = new Text(centerX -3,  centerY + clockRadius - 3, "6");
+
+        // Draw second hand
+        double sLength = clockRadius * 0.8;
+        double secondX = centerX + sLength * Math.sin(second * (2 * Math.PI / 60));
+        double secondY = centerY - sLength * Math.cos(second * (2 * Math.PI / 60));
+        Line sLine = new Line(centerX, centerY, secondX, secondY);
+        sLine.setStroke(Color.RED);
+
+        // Draw minute hand
+        double mLength = clockRadius * 0.65;
+        double xMinute = centerX + mLength *  Math.sin(minute * (2 * Math.PI / 60));
+        double minuteY = centerY = mLength * Math.cos(minute * (2 * Math.PI / 60));
+        Line mLine = new Line(centerX, centerY, xMinute, minuteY);
+        mLine.setStroke(Color.BLUE);
+
+        // Draw hour hand
+        double hLength = clockRadius * 0.5;
+        double hourX = centerX + hLength * Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+        double hourY = centerX - hLength * Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+        Line hLine = new Line(centerX, centerY, hourX, hourY);
+
+        getChildren().clear();
+        getChildren().addAll(circle, t1, t2, t3, t4, sLine, mLine, hLine);
+    }
+
+    @Override
+    public void setWidth(double width) {
+        super.setWidth(width);
+        paintClock();
+    }
+
+    @Override
+    public void setHeight(double height) {
+        super.setHeight(height);
+        paintClock();
     }
 }

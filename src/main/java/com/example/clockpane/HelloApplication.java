@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) {
         // Create a clock and label
         ClockPane clock = new ClockPane();
-        String timeString = clock.getHour() + ":" + clock.getMinute();
+        String timeString = clock.getHour() + ":" + clock.getMinute()
         + ":" + clock.getSecond();
         Label lblCurrentTime = new Label(timeString);
 
