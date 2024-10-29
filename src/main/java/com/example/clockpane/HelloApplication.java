@@ -28,7 +28,5 @@ public class HelloApplication extends Application {
         stage.setTitle("DisplayClock"); // Set the stage title
         stage.setScene(scene); // Place the scene in the stage
         stage.show();
-
     }
-
 }
